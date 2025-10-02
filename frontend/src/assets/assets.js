@@ -296,4 +296,18 @@ export const doctors = [
             line2: 'Circle, Ring Road, London'
         }
     },
+    {
+        _id: 'doc16',
+        name: 'Dr. Zoe Kelly',
+        image: doc11,
+        speciality: 'Gastroenterologist',
+        degree: 'MBBS',
+        experience: '5 Years',
+        about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
+        fees: 35,
+        address: {
+            line1: '57th Cross, Richmond',
+            line2: 'Circle, Ring Road, London'
+        }
+    },
 ]
