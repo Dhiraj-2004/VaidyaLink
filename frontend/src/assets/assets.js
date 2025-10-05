@@ -98,7 +98,8 @@ export const doctors = [
         address: {
             line1: '17th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 2.5
     },
     {
         _id: 'doc2',
@@ -112,7 +113,8 @@ export const doctors = [
         address: {
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 4.8
     },
     {
         _id: 'doc3',
@@ -126,7 +128,8 @@ export const doctors = [
         address: {
             line1: '37th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 1.2
     },
     {
         _id: 'doc4',
@@ -140,7 +143,8 @@ export const doctors = [
         address: {
             line1: '47th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 3.7
     },
     {
         _id: 'doc5',
@@ -154,7 +158,8 @@ export const doctors = [
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 6.3
     },
     {
         _id: 'doc6',
@@ -168,7 +173,8 @@ export const doctors = [
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 5.1
     },
     {
         _id: 'doc7',
@@ -182,7 +188,8 @@ export const doctors = [
         address: {
             line1: '17th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 2.9
     },
     {
         _id: 'doc8',
@@ -196,7 +203,8 @@ export const doctors = [
         address: {
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 7.6
     },
     {
         _id: 'doc9',
@@ -210,7 +218,8 @@ export const doctors = [
         address: {
             line1: '37th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 1.8
     },
     {
         _id: 'doc10',
@@ -224,7 +233,8 @@ export const doctors = [
         address: {
             line1: '47th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 4.2
     },
     {
         _id: 'doc11',
@@ -238,7 +248,8 @@ export const doctors = [
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 3.4
     },
     {
         _id: 'doc12',
@@ -252,7 +263,8 @@ export const doctors = [
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 8.1
     },
     {
         _id: 'doc13',
@@ -266,7 +278,8 @@ export const doctors = [
         address: {
             line1: '17th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 2.1
     },
     {
         _id: 'doc14',
@@ -280,7 +293,8 @@ export const doctors = [
         address: {
             line1: '27th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 5.7
     },
     {
         _id: 'doc15',
@@ -294,7 +308,8 @@ export const doctors = [
         address: {
             line1: '37th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 0.9
     },
     {
         _id: 'doc16',
@@ -308,6 +323,7 @@ export const doctors = [
         address: {
             line1: '57th Cross, Richmond',
             line2: 'Circle, Ring Road, London'
-        }
+        },
+        distance: 6.9
     },
 ]
