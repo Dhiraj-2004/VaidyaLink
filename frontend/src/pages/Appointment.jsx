@@ -172,9 +172,9 @@ const Appointment = () => {
               <p 
                 key={index}
                 onClick={() => setSlotTime(slot.time)}
-                className={`text-sm font-medium px-5 py-2 rounded-full cursor-pointer transition-all ${slot.time === slotTime ? 'bg-primary text-white' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
+                className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${slot.time === slotTime ? 'bg-primary text-white' : 'border border-gray-300 text-gray-600 hover:bg-gray-50'}`}
               >
-                {slot.time}
+                {slot.time.toLowerCase()}
               </p>
             ))
           }
