@@ -60,7 +60,38 @@ const Navbar = () => {
               Create Account
             </button>
         }
-        
+        {/* Mobile Menu Button */}
+        <img onClick={() => setShowMenu(true)} className="w-6 md:hidden cursor-pointer" src={assets.menu_icon} alt="menu" />
+        <div className={`md:hidden fixed top-0 right-0 bottom-0 z-20 bg-white shadow-lg transition-all duration-300 overflow-hidden ${showMenu ? "w-full" : "w-0"}`}>
+          <div className="flex items-center justify-between px-5 py-6">
+            <img className="w-36" src={assets.logo} alt="logo" />
+            <img className="w-7 cursor-pointer" onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="close"/>
+          </div>
+
+          {/* Menu Links */}
+          <ul className="flex flex-col items-center gap-3 mt-5 px-5 text-lg font-medium">
+            <NavLink to="/" onClick={() => setShowMenu(false)} className={({ isActive }) =>
+                `px-4 py-2 rounded inline-block transition-all duration-200 ${
+                  isActive ? "bg-primary text-white scale-[1.02]" : "text-gray-700"
+                }`}><p>HOME</p></NavLink>
+
+            <NavLink to="/doctors" onClick={() => setShowMenu(false)} className={({ isActive }) =>
+                `px-4 py-2 rounded inline-block transition-all duration-200 ${
+                  isActive ? "bg-primary text-white scale-[1.02]" : "text-gray-700"
+                }`}><p>ALL DOCTORS</p></NavLink>
+
+            <NavLink to="/about" onClick={() => setShowMenu(false)} className={({ isActive }) =>
+                `px-4 py-2 rounded inline-block transition-all duration-200 ${
+                  isActive ? "bg-primary text-white scale-[1.02]" : "text-gray-700"
+                }`}><p>ABOUT</p></NavLink>
+
+            <NavLink to="/contact" onClick={() => setShowMenu(false)} className={({ isActive }) =>
+                `px-4 py-2 rounded inline-block transition-all duration-200 ${
+                  isActive ? "bg-primary text-white scale-[1.02]" : "text-gray-700"
+                }`}><p>CONTACT</p></NavLink>
+          </ul>
+        </div>
+
       </div>
     </div>
   );
