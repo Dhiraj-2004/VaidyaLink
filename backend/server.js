@@ -1,10 +1,14 @@
 import express from 'express';
 import cors from 'cors'
 import 'dotenv/config'
+import connectDB from './config/mongodb.js';
+import connectCloudinary from './config/cloudinary.js';
 
 // app config
 const app = express();
 const PORT = process.env.PORT || 4000;
+connectDB()
+connectCloudinary()
 
 // middlewares
 app.use(express.json());
@@ -16,5 +20,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`VaidyaLink Backend is running on port ${PORT}`);
+    console.log(`Server started on port ${PORT}`);
 })
