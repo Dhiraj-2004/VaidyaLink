@@ -6,5 +6,6 @@ export default defineConfig({
   theme: {},
   plugins: [
     react()],
+  server: {port:5173}
 })
 
