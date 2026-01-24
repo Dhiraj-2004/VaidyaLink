@@ -13,22 +13,26 @@ func LoginHandler(c *gin.Context) {
 	}
 
 	if err := c.ShouldBindJSON(&body); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"msg": "Invalid input"})
+		c.JSON(http.StatusBadRequest, gin.H{"success": false, "message": "Invalid input"})
 		return
 	}
 
 	token, err := Login(body.Email, body.Password)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"msg": err.Error()})
+		c.JSON(http.StatusUnauthorized, gin.H{"success": false, "message": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, gin.H{"success": true, "token": token, "message": "Login successful"})
 }
 
 func DashboardHandler(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"msg": "Welcome Admin",
-	})
+	stats, err := GetDashboardStats()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "message": "Failed to fetch dashboard stats"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"success": true, "stats": stats})
 }
 

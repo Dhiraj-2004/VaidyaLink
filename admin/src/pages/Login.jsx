@@ -14,23 +14,31 @@ const Login = () => {
     e.preventDefault()
 
     try {
-
         if(role === 'Admin') {
             const {data} = await axios.post(backendUrl + 'api/admin/login', {email, password})
             if(data.success) {
                 localStorage.setItem('aToken', data.token)
                 setAToken(data.token)
+                toast.success(data.message || 'Login successful')
             }
             else {
-                toast.error(data.message)
+                toast.error(data.message || 'Login failed')
             }
         }
         else {
-
+            const {data} = await axios.post(backendUrl + 'api/doctor/login', {email, password})
+            if(data.success) {
+                localStorage.setItem('dToken', data.token)
+                toast.success(data.message || 'Login successful')
+                // Handle doctor login - you may want to add doctor context
+            }
+            else {
+                toast.error(data.message || 'Login failed')
+            }
         }
         
     } catch (error) {
-        
+        toast.error(error.response?.data?.message || 'An error occurred during login')
     }
   };
 

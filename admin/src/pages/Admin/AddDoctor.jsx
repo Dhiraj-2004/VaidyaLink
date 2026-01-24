@@ -1,11 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { assets } from "../../assets/assets";
+import { AdminContext } from "../../context/AdminContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddDoctor = () => {
+  const { backendUrl } = useContext(AdminContext);
+  const navigate = useNavigate();
   const [docImg, setDocImg] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    speciality: "General physician",
+    experience: "",
+    education: "",
+    fees: "",
+    address1: "",
+    address2: "",
+    longitude: "",
+    latitude: "",
+    about: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const formDataToSend = new FormData();
+      
+      // Append all form fields
+      Object.keys(formData).forEach((key) => {
+        formDataToSend.append(key, formData[key]);
+      });
+
+      // Append image if selected
+      if (docImg) {
+        formDataToSend.append("image", docImg);
+      }
+
+      const { data } = await axios.post(
+        backendUrl + "api/admin/doctors",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (data.success) {
+        toast.success("Doctor added successfully");
+        navigate("/doctor-list");
+      } else {
+        toast.error(data.message || "Failed to add doctor");
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to add doctor");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <form className="m-5 w-full">
+    <form className="m-5 w-full" onSubmit={handleSubmit}>
       <p className="mb-6 text-lg font-medium">Add Doctor</p>
 
       <div className="bg-white px-8 py-8 border rounded-xl w-full max-w-4xl">
@@ -15,7 +84,7 @@ const AddDoctor = () => {
             <img
               src={docImg ? URL.createObjectURL(docImg) : assets.upload_area}
               alt=""
-              className="w-20 h-20 rounded-full object-cover"
+              className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
             />
           </label>
           <input
@@ -39,7 +108,11 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2"
                 type="text"
+                name="name"
                 placeholder="Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -48,7 +121,11 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2"
                 type="email"
+                name="email"
                 placeholder="Your email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -57,13 +134,23 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2"
                 type="password"
+                name="password"
                 placeholder="Password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
               />
             </div>
 
             <div>
               <p className="mb-1">Experience</p>
-              <select className="w-full border rounded px-3 py-2">
+              <select
+                className="w-full border rounded px-3 py-2"
+                name="experience"
+                value={formData.experience}
+                onChange={handleInputChange}
+                required
+              >
                 <option value="">Experience</option>
                 <option value="1">1 Year</option>
                 <option value="2">2 Years</option>
@@ -83,7 +170,11 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2"
                 type="number"
+                name="fees"
                 placeholder="Your fees"
+                value={formData.fees}
+                onChange={handleInputChange}
+                required
               />
             </div>
           </div>
@@ -92,7 +183,13 @@ const AddDoctor = () => {
           <div className="flex flex-col gap-4">
             <div>
               <p className="mb-1">Speciality</p>
-              <select className="w-full border rounded px-3 py-2">
+              <select
+                className="w-full border rounded px-3 py-2"
+                name="speciality"
+                value={formData.speciality}
+                onChange={handleInputChange}
+                required
+              >
                 <option value="General physician">General physician</option>
                 <option value="Gynecologist">Gynecologist</option>
                 <option value="Dermatologist">Dermatologist</option>
@@ -107,7 +204,11 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2"
                 type="text"
+                name="education"
                 placeholder="Education"
+                value={formData.education}
+                onChange={handleInputChange}
+                required
               />
             </div>
 
@@ -116,12 +217,19 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2 mb-2"
                 type="text"
+                name="address1"
                 placeholder="Address 1"
+                value={formData.address1}
+                onChange={handleInputChange}
+                required
               />
               <input
                 className="w-full border rounded px-3 py-2"
                 type="text"
+                name="address2"
                 placeholder="Address 2"
+                value={formData.address2}
+                onChange={handleInputChange}
               />
             </div>
 
@@ -130,12 +238,20 @@ const AddDoctor = () => {
               <input
                 className="w-full border rounded px-3 py-2 mb-2"
                 type="text"
+                name="longitude"
                 placeholder="Longitude"
+                value={formData.longitude}
+                onChange={handleInputChange}
+                required
               />
               <input
                 className="w-full border rounded px-3 py-2"
                 type="text"
-                placeholder="Altitude"
+                name="latitude"
+                placeholder="Latitude"
+                value={formData.latitude}
+                onChange={handleInputChange}
+                required
               />
             </div>
           </div>
@@ -147,16 +263,21 @@ const AddDoctor = () => {
           <textarea
             className="w-full border rounded px-3 py-2"
             rows="4"
+            name="about"
             placeholder="Write about yourself"
+            value={formData.about}
+            onChange={handleInputChange}
+            required
           ></textarea>
         </div>
 
         {/* Button */}
         <button
           type="submit"
-          className="mt-6 bg-primary px-8 py-2 rounded-full text-white text-sm"
+          disabled={loading}
+          className="mt-6 bg-primary px-8 py-2 rounded-full text-white text-sm hover:opacity-90 transition disabled:opacity-50"
         >
-          Add doctor
+          {loading ? "Adding..." : "Add doctor"}
         </button>
       </div>
     </form>
