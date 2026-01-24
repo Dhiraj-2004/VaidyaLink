@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #5F6FFF;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: theme('colors.zinc.200');
+  }
+}
